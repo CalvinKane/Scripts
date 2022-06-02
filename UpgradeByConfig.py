@@ -9,7 +9,7 @@ requests.packages.urllib3.disable_warnings()
 # Set Up Connection to CVP (CVaaS in this example)
 cvp_client = CvpClient()
 cvaas_token = 'Settings > Service Account > New Or Existing Account > Token'
-cvp_client.connect(nodes=['www.cv-staging.corp.arista.io'], username='', password='', is_cvaas=True, cvaas_token=cvaas_token)
+cvp_client.connect(nodes=['CVP IP/URL'], username='', password='', is_cvaas=True, cvaas_token=cvaas_token)
 
 # Set Up CC Name and UUID
 cc_id = str(uuid4())
