@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import pathlib
-import AristaParser
+import ConfigParser
+
+### User Input
+config_directory = './configs'
+output_directory = './configs/configlets/'
 
 configlets = {
     'Base': ['hostname', 'spanning tree', 'mlag'],
@@ -8,6 +12,7 @@ configlets = {
     'VRF': ['vrf'],
     'Interfaces': ['interface', 'vlan']
 }
+###
 
 def write_config_to_file(conf: dict):
     for configlet in configlets:
@@ -22,13 +27,11 @@ def write_config_to_file(conf: dict):
             configlet_file.write(config)
 
 if __name__ == '__main__':
-    directory = './configs'
-    output_directory = './configs/configlets/'
-
-    for path in pathlib.Path(directory).iterdir():
+    pathlib.Path(output_directory).mkdir(parents=True, exist_ok=True)
+    for path in pathlib.Path(config_directory).iterdir():
         if path.is_file() and path.suffix == '.cfg':
             print(f'Opening file: {path.name}\n')
             
             with open(path, 'r') as cfg:
-                conf = AristaParser.Parse(cfg)
+                conf = ConfigParser.Parse(cfg)
                 write_config_to_file(conf)
