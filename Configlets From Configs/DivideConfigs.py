@@ -20,11 +20,13 @@ def write_config_to_file(conf: dict):
         
         config = ''
         for section in configlets[configlet]:
-            config += conf[section]
+            if section in conf:
+                config += conf[section]
         
-        configlet_name = f'{output_directory}{path.name.split(".")[0]}-{configlet}.cfg'
-        with open(configlet_name, 'w') as configlet_file:
-            configlet_file.write(config)
+        if len(config) > 0:
+            configlet_name = f'{output_directory}{path.name.split(".")[0]}-{configlet}.cfg'
+            with open(configlet_name, 'w') as configlet_file:
+                configlet_file.write(config)
 
 if __name__ == '__main__':
     pathlib.Path(output_directory).mkdir(parents=True, exist_ok=True)
