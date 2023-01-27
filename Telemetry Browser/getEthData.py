@@ -1,11 +1,12 @@
+#!/usr/bin/env python3
 from cloudvision.Connector.grpc_client import GRPCClient, create_query
 from cloudvision.Connector.codec import Wildcard
 import re
 
 ### User Input
-cvp_url = "CVP URL"
-deviceID = ""
-token = "token_file_path"
+cvp_url = "CVP URL"        # e.i. www.arista.io (No https)
+deviceID = ""              # Device serial number
+token = "token_file_path"  # Path that points to a file with the CVP service token in it
 ###
 
 # function based on https://github.com/aristanetworks/cloudvision-python/blob/trunk/examples/Connector/get_intf_status.py
